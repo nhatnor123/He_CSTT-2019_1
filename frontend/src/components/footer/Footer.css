@@ -1,0 +1,24 @@
+.twitter{
+    color: #5DA9DD;
+    font-size: 3rem;
+    margin: 0 0.5rem
+}
+.twitter:hover{
+    color: rgb(68, 122, 158)
+}
+.facebook{
+    color: #4267B2;
+    font-size: 3rem;
+    margin: 0 0.5rem
+}
+.facebook:hover{
+    color: rgb(39, 61, 104)
+}
+.skype{
+    color: #00A9E7;
+    font-size: 3rem;
+    margin: 0 0.5rem
+}
+.skype:hover{
+    color: rgb(1, 74, 100)
+}
