@@ -42,7 +42,35 @@ class Diagnostic extends Component {
 							<div class="col-md-8">1111</div>
 						</div>
 					</div>
-					<div class="row"></div>
+					<div class="row" style={{marginLeft:"40px", marginTop:"45px", marginBottom:"40px",}}>
+						<Button>Add new patient</Button>
+					</div>
+					<div class="row" style={{marginLeft:"20px"}}>
+						<div>
+							<div class="row" style={{fontSize:"20px"}}>
+								Lastest diagnosistic information
+							</div>
+							<div
+								class="row"
+								style={{ backgroundColor: "white" }}	
+							>
+								<div style={{ marginLeft: "20px" }}>
+									<div class="row">
+										<p>Sick hard (0.43)</p>
+									</div>
+									<div class="row">
+										<p>Sick hard (0.43)</p>
+									</div>
+									<div class="row">
+										<p>Sick hard (0.43)</p>
+									</div>
+								</div>
+							</div>
+							<div class="row" style={{fontSize:"20px", marginTop:"10px"}}>
+								<p>Date : 06/11/2019</p>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div
 					class="col-md-9"
@@ -681,7 +709,7 @@ class Diagnostic extends Component {
 						<div class="col-md-3" style={{ marginLeft: "30px" }}>
 							<div class="row">
 								<b style={{ fontSize: "20px", color: "black" }}>
-									Sick and diagnosis probability
+									Medical advice
 								</b>
 							</div>
 							<div
@@ -690,19 +718,19 @@ class Diagnostic extends Component {
 							>
 								<div style={{ marginLeft: "20px" }}>
 									<div class="row">
-										<p>this is some diagnosis</p>
+										<p>this is some Medical advice</p>
 									</div>
 									<div class="row">
-										<p>this is some diagnosis</p>
+										<p>this is some Medical advice</p>
 									</div>
 									<div class="row">
-										<p>this is some diagnosis</p>
+										<p>this is some Medical advice</p>
 									</div>
 									<div class="row">
-										<p>this is some diagnosis</p>
+										<p>this is some Medical advice</p>
 									</div>
 									<div class="row">
-										<p>this is some diagnosis</p>
+										<p>this is some Medical advice</p>
 									</div>
 								</div>
 							</div>
