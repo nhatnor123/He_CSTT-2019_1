@@ -1,4 +1,4 @@
-console.log("db_connect module initialized");
+// console.log("db_connect module initialized");
 var mysql = require("mysql");
 
 function createConnection() {
@@ -15,5 +15,7 @@ function createConnection() {
 		}
 		console.log("Connection with database was established successfullly");
 	});
+	
+	return connection;
 }
 exports.createConnection = createConnection;
