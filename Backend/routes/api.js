@@ -45,7 +45,7 @@ router.get("/getPFSDiagnoseValueFromPFSPatientData", (req, res, next) => {
 				)
 			};
 		}
-		// console.log(tempData);
+
 		let x = -10,
 			y = 10,
 			z = 10;
@@ -55,7 +55,7 @@ router.get("/getPFSDiagnoseValueFromPFSPatientData", (req, res, next) => {
 			z = Math.min(tempData[symptom]["z"], z);
 		}
 		console.log({ x, y, z });
-		// break;
+
 		fuzzyValueOfEachDiagnose[diagnose] = { x, y, z };
 	}
 	console.log(fuzzyValueOfEachDiagnose);
@@ -83,7 +83,6 @@ router.get("/getFuzzyDiagnoseValueFromPFSPatientData", (req, res, next) => {
 				)
 			};
 		}
-		// console.log(tempData);
 		let x = -10,
 			y = 10,
 			z = 10;
@@ -93,8 +92,8 @@ router.get("/getFuzzyDiagnoseValueFromPFSPatientData", (req, res, next) => {
 			z = Math.min(tempData[symptom]["z"], z);
 		}
 		console.log({ x, y, z });
-		// break;
-		fuzzyValueOfEachDiagnose[diagnose] = { x, y, z };
+
+		fuzzyValueOfEachDiagnose[diagnose] = x - z * (1 - (x + y + z));
 	}
 	console.log(fuzzyValueOfEachDiagnose);
 	return res.json(fuzzyValueOfEachDiagnose);
