@@ -17,26 +17,32 @@ class Header extends Component {
 				<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<div>
+							<div
+								style={{ marginLeft: "30px", fontSize: "21px" }}
+							>
 								<Link to="/" className="nav-link">
-									HOME
+									TRANG CHỦ
 								</Link>
 							</div>
 						</li>
 						<li class="nav-item">
-							<div>
+							<div
+								style={{ marginLeft: "30px", fontSize: "21px" }}
+							>
 								<Link to="/diagnostic" className="nav-link">
-									DIAGNOSTIC
+									CHUẨN ĐOÁN BỆNH
 								</Link>
 							</div>
 						</li>
 						<li class="nav-item">
-							<div>
+							<div
+								style={{ marginLeft: "30px", fontSize: "21px" }}
+							>
 								<Link
 									to="/expertknowledge"
 									className="nav-link"
 								>
-									EXPERT KNOWLEDGE
+									TRI THỨC CHUYÊN GIA
 								</Link>
 							</div>
 						</li>
