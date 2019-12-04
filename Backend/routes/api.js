@@ -2,11 +2,9 @@ var express = require("express");
 var router = express.Router();
 var DBConnect = require("../connect/DBConnect");
 
-var {
-	patientData,
-	diagnoses_symptoms,
-	paramaterData
-} = require("./fakeData");
+let { chuanHoaData } = require("../controllers/chuanHoa");
+
+var { patientData, diagnoses_symptoms, paramaterData } = require("./fakeData");
 
 router.get("/", (req, res, next) => {
 	return res.send("/api ");
@@ -63,10 +61,8 @@ router.get("/getPFSDiagnoseValueFromPFSPatientData", (req, res, next) => {
 });
 
 router.post("/getFuzzyDiagnoseValueFromPFSPatientData", (req, res, next) => {
-
 	let fuzzyValueOfEachDiagnose = {};
 	let patientData = req.body.dataLevelOfSymptom;
-
 
 	for (diagnose in diagnoses_symptoms) {
 		let tempData = [];
@@ -126,10 +122,8 @@ router.post("/getFuzzyDiagnoseValueFromPFSPatientData", (req, res, next) => {
 						: parseFloat(patientData[symptom]["z"]["value"]) / 100
 				)
 			};
-			console.log(tempData);
-	
+			// console.log(tempData);
 		}
-
 
 		let x = -10,
 			y = 10,
@@ -143,95 +137,95 @@ router.post("/getFuzzyDiagnoseValueFromPFSPatientData", (req, res, next) => {
 
 		fuzzyValueOfEachDiagnose[diagnose] = x - z * (1 - (x + y + z));
 	}
-	console.log(fuzzyValueOfEachDiagnose);
+	// console.log(fuzzyValueOfEachDiagnose);
 	return res.json(fuzzyValueOfEachDiagnose);
 });
 
+router.post(
+	"/getFuzzyDiagnoseValueFromPFSPatientDataDuocChuanHoa",
+	(req, res, next) => {
+		let fuzzyValueOfEachDiagnose = {};
+		let patientData = chuanHoaData(req.body.dataLevelOfSymptom);
 
-router.post("/getFuzzyDiagnoseValueFromPFSPatientDataDuocChuanHoa", (req, res, next) => {
+		for (diagnose in diagnoses_symptoms) {
+			let tempData = [];
+			for (symptom in patientData) {
+				// console.log(
+				// 	symptom +
+				// 		" : " +
+				// 		patientData[symptom]["x"]["type"] +
+				// 		" : " +
+				// 		patientData[symptom]["x"]["value"]
+				// );
+				// console.log(
+				// 	patientData[symptom]["x"]["type"] === "language"
+				// 		? paramaterData.cacDoanNgonNgu[
+				// 				patientData[symptom]["x"]["value"]
+				// 		  ][1]
+				// 		: parseFloat(patientData[symptom]["x"]["value"]) / 100
+				// );
+				// console.log( paramaterData.cacDoanNgonNgu[patientData[symptom]["x"]["value"]][1])
+				// console.log(parseFloat(patientData[symptom]["x"]["value"]) / 100)
 
-	let fuzzyValueOfEachDiagnose = {};
-	let patientData = req.body.dataLevelOfSymptom;
-
-
-	for (diagnose in diagnoses_symptoms) {
-		let tempData = [];
-		for (symptom in patientData) {
-			// console.log(
-			// 	symptom +
-			// 		" : " +
-			// 		patientData[symptom]["x"]["type"] +
-			// 		" : " +
-			// 		patientData[symptom]["x"]["value"]
-			// );
-			// console.log(
-			// 	patientData[symptom]["x"]["type"] === "language"
-			// 		? paramaterData.cacDoanNgonNgu[
-			// 				patientData[symptom]["x"]["value"]
-			// 		  ][1]
-			// 		: parseFloat(patientData[symptom]["x"]["value"]) / 100
-			// );
-			// console.log( paramaterData.cacDoanNgonNgu[patientData[symptom]["x"]["value"]][1])
-			// console.log(parseFloat(patientData[symptom]["x"]["value"]) / 100)
-
-			tempData[symptom] = {
-				x: Math.min(
-					diagnoses_symptoms[diagnose][symptom]["x"],
-					patientData[symptom]["x"]["type"] === "language"
-						? (paramaterData.cacDoanNgonNgu[
-								patientData[symptom]["x"]["value"]
-						  ][0] +
-								paramaterData.cacDoanNgonNgu[
+				tempData[symptom] = {
+					x: Math.min(
+						diagnoses_symptoms[diagnose][symptom]["x"],
+						patientData[symptom]["x"]["type"] === "language"
+							? (paramaterData.cacDoanNgonNgu[
 									patientData[symptom]["x"]["value"]
-								][1]) /
-								2
-						: parseFloat(patientData[symptom]["x"]["value"]) / 100
-				),
-				y: Math.min(
-					diagnoses_symptoms[diagnose][symptom]["y"],
-					patientData[symptom]["y"]["type"] === "language"
-						? (paramaterData.cacDoanNgonNgu[
-								patientData[symptom]["y"]["value"]
-						  ][0] +
-								paramaterData.cacDoanNgonNgu[
+							  ][0] +
+									paramaterData.cacDoanNgonNgu[
+										patientData[symptom]["x"]["value"]
+									][1]) /
+									2
+							: parseFloat(patientData[symptom]["x"]["value"]) /
+									100
+					),
+					y: Math.min(
+						diagnoses_symptoms[diagnose][symptom]["y"],
+						patientData[symptom]["y"]["type"] === "language"
+							? (paramaterData.cacDoanNgonNgu[
 									patientData[symptom]["y"]["value"]
-								][1]) /
-								2
-						: parseFloat(patientData[symptom]["y"]["value"]) / 100
-				),
-				z: Math.max(
-					diagnoses_symptoms[diagnose][symptom]["z"],
-					patientData[symptom]["z"]["type"] === "language"
-						? (paramaterData.cacDoanNgonNgu[
-								patientData[symptom]["z"]["value"]
-						  ][0] +
-								paramaterData.cacDoanNgonNgu[
+							  ][0] +
+									paramaterData.cacDoanNgonNgu[
+										patientData[symptom]["y"]["value"]
+									][1]) /
+									2
+							: parseFloat(patientData[symptom]["y"]["value"]) /
+									100
+					),
+					z: Math.max(
+						diagnoses_symptoms[diagnose][symptom]["z"],
+						patientData[symptom]["z"]["type"] === "language"
+							? (paramaterData.cacDoanNgonNgu[
 									patientData[symptom]["z"]["value"]
-								][1]) /
-								2
-						: parseFloat(patientData[symptom]["z"]["value"]) / 100
-				)
-			};
-			console.log(tempData);
-	
+							  ][0] +
+									paramaterData.cacDoanNgonNgu[
+										patientData[symptom]["z"]["value"]
+									][1]) /
+									2
+							: parseFloat(patientData[symptom]["z"]["value"]) /
+									100
+					)
+				};
+				// console.log(tempData);
+			}
+
+			let x = -10,
+				y = 10,
+				z = 10;
+			for (symptom in patientData) {
+				x = Math.max(tempData[symptom]["x"], x);
+				y = Math.min(tempData[symptom]["y"], y);
+				z = Math.min(tempData[symptom]["z"], z);
+			}
+			// console.log({ x, y, z });
+
+			fuzzyValueOfEachDiagnose[diagnose] = x - z * (1 - (x + y + z));
 		}
-
-
-		let x = -10,
-			y = 10,
-			z = 10;
-		for (symptom in patientData) {
-			x = Math.max(tempData[symptom]["x"], x);
-			y = Math.min(tempData[symptom]["y"], y);
-			z = Math.min(tempData[symptom]["z"], z);
-		}
-		// console.log({ x, y, z });
-
-		fuzzyValueOfEachDiagnose[diagnose] = x - z * (1 - (x + y + z));
+		// console.log(fuzzyValueOfEachDiagnose);
+		return res.json(fuzzyValueOfEachDiagnose);
 	}
-	console.log(fuzzyValueOfEachDiagnose);
-	return res.json(fuzzyValueOfEachDiagnose);
-});
-
+);
 
 module.exports = router;

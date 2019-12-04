@@ -179,21 +179,48 @@ let symptoms_diagnoses = {
 };
 
 let paramaterData = {
-	cacDoanNgonNgu:{
-		"RatThap":[0,0.14],
-		"HonThap":[0.14,0.24],
-		"KhaNangThap":[0.24,0.32],
-		"ItThap":[0.32,0.4],
-		"ItCao":[0.4,0.52],
-		"KhaNangCao":[0.52,0.64],
-		"HonCao":[0.64, 0.79],
-		"RatCao":[0.79,1],
-		"Thap":[0.24, 0.24],
-		"Cao":[0.64, 0.64]
+	cacDoanNgonNgu: {
+		RatThap: [0, 0.14],
+		HonThap: [0.14, 0.24],
+		KhaNangThap: [0.24, 0.32],
+		ItThap: [0.32, 0.4],
+		ItCao: [0.4, 0.52],
+		KhaNangCao: [0.52, 0.64],
+		HonCao: [0.64, 0.79],
+		RatCao: [0.79, 1],
+		Thap: [0.24, 0.24],
+		Cao: [0.64, 0.64]
+	},
+	thuTuDoanNgonNgu: [
+		"RatThap",
+		"HonThap",
+		"KhaNangThap",
+		"ItThap",
+		"ItCao",
+		"KhaNangCao",
+		"HonCao",
+		"RatCao"
+	],
+	W: 0.4,
+	fm: {
+		Thap: 0.4,
+		Cao: 0.6,
+		Rat: 0.35,
+		Hon: 0.25,
+		KhaNang: 0.2,
+		It: 0.2,
+		RatThap: 0.14,
+		HonThap: 0.1,
+		KhaNangThap: 0.08,
+		ItThap: 0.08,
+		ItCao: 0.12,
+		KhaNangCao: 0.12,
+		HonCao: 0.15,
+		RatCao: 0.21
 	}
-}
+};
 
 exports.patientData = patientData;
 exports.symptoms_diagnoses = symptoms_diagnoses;
 exports.diagnoses_symptoms = diagnoses_symptoms;
-exports.paramaterData = paramaterData
+exports.paramaterData = paramaterData;
