@@ -224,3 +224,9 @@ exports.patientData = patientData;
 exports.symptoms_diagnoses = symptoms_diagnoses;
 exports.diagnoses_symptoms = diagnoses_symptoms;
 exports.paramaterData = paramaterData;
+
+
+//  patientData;
+// symptoms_diagnoses;
+// diagnoses_symptoms;
+//  paramaterData;

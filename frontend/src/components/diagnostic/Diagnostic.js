@@ -108,7 +108,9 @@ class Diagnostic extends Component {
 			this
 		);
 		this.clickDiagnoseButton = this.clickDiagnoseButton.bind(this);
-		this.clickDiagnoseButtonDuocChuanHoa= this.clickDiagnoseButtonDuocChuanHoa.bind(this)
+		this.clickDiagnoseButtonDuocChuanHoa = this.clickDiagnoseButtonDuocChuanHoa.bind(
+			this
+		);
 	}
 
 	actionSelectLevelOfSymtoms = (symptomName, PFS_Parameter) => {
@@ -158,7 +160,7 @@ class Diagnostic extends Component {
 	}
 
 	async clickDiagnoseButtonDuocChuanHoa() {
-		console.log(this.state.dataLevelOfSymptoms)
+		console.log(this.state.dataLevelOfSymptoms);
 		const resData = await axios.post(
 			`${IPAdress}/api/getFuzzyDiagnoseValueFromPFSPatientDataDuocChuanHoa`,
 			{
@@ -789,7 +791,12 @@ class Diagnostic extends Component {
 								<Button onClick={this.clickDiagnoseButton}>
 									Chuẩn đoán với dữ liệu chưa chuẩn hóa
 								</Button>
-								<Button onClick={this.clickDiagnoseButtonDuocChuanHoa} style={{marginLeft:"40px"}}>
+								<Button
+									onClick={
+										this.clickDiagnoseButtonDuocChuanHoa
+									}
+									style={{ marginLeft: "40px" }}
+								>
 									Chuẩn đoán với dữ liệu chuẩn hóa
 								</Button>
 							</div>
@@ -813,34 +820,50 @@ class Diagnostic extends Component {
 									<div class="row">
 										<p>
 											Fever :{" "}
-											{this.state.diagnosisValues.fever}
+											{this.state.diagnosisValues.fever &&
+												this.state.diagnosisValues.fever.toFixed(
+													4
+												)}
 										</p>
 									</div>
 									<div class="row">
 										<p>
 											Malaria :{" "}
-											{this.state.diagnosisValues.malaria}
+											{this.state.diagnosisValues
+												.malaria &&
+												this.state.diagnosisValues.malaria.toFixed(
+													4
+												)}
 										</p>
 									</div>
 									<div class="row">
 										<p>
 											Typhoid :{" "}
-											{this.state.diagnosisValues.typhoid}
+											{this.state.diagnosisValues
+												.typhoid &&
+												this.state.diagnosisValues.typhoid.toFixed(
+													4
+												)}
 										</p>
 									</div>
 									<div class="row">
 										<p>
 											Stomach :{" "}
-											{this.state.diagnosisValues.stomach}
+											{this.state.diagnosisValues
+												.stomach &&
+												this.state.diagnosisValues.stomach.toFixed(
+													4
+												)}
 										</p>
 									</div>
 									<div class="row">
 										<p>
-											Chest_pain :{" "}
-											{
-												this.state.diagnosisValues
-													.chest_problem
-											}
+											Chest problem :{" "}
+											{this.state.diagnosisValues
+												.chest_problem &&
+												this.state.diagnosisValues.chest_problem.toFixed(
+													4
+												)}
 										</p>
 									</div>
 								</div>
@@ -848,18 +871,182 @@ class Diagnostic extends Component {
 						</div>
 
 						<div class="col-md-7" style={{ marginLeft: "30px" }}>
-							<div class="row">
-								<b style={{ fontSize: "20px", color: "black" }}>
-									Phác đồ điều trị
-								</b>
-							</div>
 							<div
 								class="row"
 								style={{ backgroundColor: "white" }}
 							>
 								<div style={{ marginLeft: "20px" }}>
 									<div class="row">
-										<p>this is some Medical advice</p>
+										<p>Điều trị : </p>
+										<div style={{ margin: "10px 10px" }}>
+											{this.state.diagnosisValues.fever &&
+												this.state.diagnosisValues
+													.fever >= 0.5 && (
+													<div>
+														Uống nhiều nước, có thể
+														dùng dung dịch oresol
+														hoặc nước trái cây; Mặc
+														quần áo rộng, nhẹ, thoải
+														mái; Đắp chăn nếu cảm
+														thấy ớn lạnh, cho đến
+														khi triệu chứng này biến
+														mất; Sử dụng
+														acetaminophen hoặc
+														ibuprofen theo hướng dẫn
+														trong tờ thông tin
+														thuốc.
+													</div>
+												)}
+											{this.state.diagnosisValues
+												.malaria &&
+												this.state.diagnosisValues
+													.malaria >= 0.5 && (
+													<div>
+														Điều trị cắt cơn sốt:
+														Nhiễm Plasmodium vivax:
+														Chloroquine tổng liều
+														25mg/kg cân nặng chia 3
+														ngày điều trị: ngày 1 và
+														ngày 2 uống 10 mg/kg cân
+														nặng, ngày 3 uống 5
+														mg/kg cân nặng hoặc Hoặc
+														artesunat tổng liều 16
+														mg/kg cân nặng chia làm
+														7 ngày điều trị: ngày 1
+														uống 4 mg/kg cân nặng,
+														từ ngày thứ 2 đến ngày
+														thứ 7 uống 2 mg/kg cân
+														nặng (không dùng
+														artesunat cho phụ nữ có
+														thai trong 3 tháng đầu
+														trừ trường hợp sốt rét
+														ác tính) Hoặc Quinin
+														sulfat liều 30 mg/kg/24
+														giờ chia 3 lần uống
+														trong ngày, điều trị
+														trong 7 ngày. Nhiễm
+														Plasmodium falciparum:
+														Thuốc phối hợp có dẫn
+														xuất artemisinin: thuốc
+														viên Arterakine hoặc CV
+														artecan (40mg
+														dihydroartemisinin +
+														320mg piperaquine
+														phosphat) Liều dùng:
+														Dưới 3 tuổi: ngày đầu 1
+														viên, hai ngày sau mỗi
+														ngày 1/2 viên. Từ 3 đến
+														dưới 8 tuổi: ngày đầu 2
+														viên, hai ngày sau mỗi
+														ngày 1 viên. Từ 8 đến
+														dưới 15 tuổi: ngày đầu 3
+														viên, hai ngày sau mỗi
+														ngày 1,5 viên. Từ 15
+														tuổi trở lên: ngày đầu 4
+														viên, hai ngày sau mỗi
+														ngày 2 viên. Không dùng
+														cho phụ nữ có thai trong
+														3 tháng đầu.
+													</div>
+												)}
+											{this.state.diagnosisValues
+												.typhoid &&
+												this.state.diagnosisValues
+													.typhoid >= 0.5 && (
+													<div>
+														- Bù nư­­ớc điện giải
+														(1500-2000ml/ngày):
+														Glucose 5%,
+														Ringerlactat, Natri
+														chlorid 9%0 - Hạ sốt khi
+														sốt cao - An thần, sinh
+														tố - Dinh d­­ưỡng: Chế
+														độ ăn lỏng - mềm đủ chất
+														dinh d­­ưỡng trong thời
+														gian sốt. Đặc dần trong
+														thời kỳ hồi phục.- Xuất
+														huyết tiêu hoá: Bất
+														động, ch­­ườm lạnh,
+														thuốc cầm máu, truyền
+														máu t­ươi. - Thủng ruột:
+														Chống sốc điều trị ngoại
+														khoa. - Vấn đề dùng
+														Corticoid: Nhiều tác giả
+														thống nhất dùng cho bệnh
+														nhân thư­­ơng hàn có
+														biến chứng choáng nội
+														độc tố. Dùng Solumedrol
+														30mg/kg truyền trong 30
+														phút đầu, có thể lặp lại
+														sau 4-6 giờ trong 48
+														giờ.
+													</div>
+												)}
+											{this.state.diagnosisValues
+												.stomach &&
+												this.state.diagnosisValues
+													.stomach >= 0.5 && (
+													<div>
+														Muốn điều trị tận gốc và
+														ngăn cản viêm loét cấp
+														tính chuyển thành mãn
+														tính, cần phối hợp tác
+														động vào cả 3 yếu tố: Ức
+														chế tác động xấu của tác
+														nhân gây bệnh: vi khuẩn
+														HP, các thuốc NSAID,…
+														Điều chỉnh lại cân bằng
+														tấn công-bảo vệ: giảm
+														yếu tố tấn công, tăng
+														yếu tố bảo vệ Tăng tốc
+														phục hồi tổn thương:
+														nhanh chóng phục hồi các
+														vết loét sẵn có Thuốc
+														điều trị loét được chia
+														làm các nhóm sau Thuốc
+														kháng toan Thuốc kháng
+														tiết Là các thuốc làm
+														giảm tiết acid dịch vị
+														qua nhiều cơ chế khác
+														nhau do kháng thụ thể
+														H2, kháng choline, kháng
+														gastrine và kháng bơm
+														proton của tế bào viền
+														thành dạ dày. Thuốc
+														kháng choline Thuốc
+														kháng H2: Ức chế sự tiết
+														acid không chỉ sau kích
+														thích histamine mà cả
+														sau kích thích dây X,
+														kích thích bằng gastrine
+														và cả thử nghiệm bữa ăn
+													</div>
+												)}
+											{this.state.diagnosisValues
+												.chest_problem &&
+												this.state.diagnosisValues
+													.chest_problem >= 0.5 && (
+													<div>
+														Thuốc kháng bơm proton:
+														Là thụ thể cuối cùng của
+														tế bào viền phụ trách sự
+														tiết acide chlorhydride,
+														do đó thuốc ức chế bơm
+														proton có tác dụng chung
+														và mạnh nhất. +
+														Omeprazol (Mopral,
+														Lomac, Omez, Losec). +
+														Esomeprazole (Nexium):
+														đồng phân của Omeprazole
+														có thời gian bán huỷ lâu
+														hơn và có tác dụng ức
+														chế tiết Acide và dịch
+														vị tốt hơn.. +
+														Lanzorprazol (Lanzor,
+														Ogast)
+													</div>
+												)}
+										</div>
 									</div>
 								</div>
 							</div>

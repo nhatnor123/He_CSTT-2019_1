@@ -6,6 +6,11 @@ let { chuanHoaData } = require("../controllers/chuanHoa");
 
 var { patientData, diagnoses_symptoms, paramaterData } = require("./fakeData");
 
+// let {
+// 	selectDataSymptomsDiagnosesRelation,
+// 	insertDataSymptomsDiagnosesRelation
+// } = require("../connect/getData");
+
 router.get("/", (req, res, next) => {
 	return res.send("/api ");
 });
@@ -227,5 +232,20 @@ router.post(
 		return res.json(fuzzyValueOfEachDiagnose);
 	}
 );
+
+router.get("/selectDataSymptomsDiagnosesRelation", (req, res, next) => {
+	const connection = DBConnect.createConnection();
+	let result = {};
+	connection.query(
+		"SELECT * FROM symptoms_diagnoses_relation",
+		(err, results) => {
+			if (err) {
+				return res.json(err);
+				// throw err;
+			}
+			return res.send(results);
+		}
+	);
+});
 
 module.exports = router;
