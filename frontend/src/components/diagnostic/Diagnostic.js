@@ -789,16 +789,16 @@ class Diagnostic extends Component {
 							</div>
 							<div style={{ marginTop: "20px", width: "80%" }}>
 								<Button onClick={this.clickDiagnoseButton}>
-									Chuẩn đoán với dữ liệu chưa chuẩn hóa
+									Chuẩn đoán 
 								</Button>
-								<Button
+								{/* <Button
 									onClick={
 										this.clickDiagnoseButtonDuocChuanHoa
 									}
 									style={{ marginLeft: "40px" }}
 								>
 									Chuẩn đoán với dữ liệu chuẩn hóa
-								</Button>
+								</Button> */}
 							</div>
 						</div>
 					</div>

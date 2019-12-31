@@ -1,0 +1,5 @@
+-Đầu tiên, cài đặt môi trường node package manager 10
+-Giải nén source code được 2 thư mục là backend và frontend
+-Sau đó, cd tại backend, mở terminal, gõ lệnh: "npm install" để cài đặt thư viện cho backend, rồi gõ lệnh : "npm start" để khởi động server
+-Với frontend, làm tương tự : gõ 2 lệnh "npm install" và "npm start"
+-Khởi động MySQL, và cài đặt csdl với dữ liệu ở thư mục data
